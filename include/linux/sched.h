@@ -257,7 +257,20 @@ extern rwlock_t tasklist_lock;
 extern spinlock_t mmlist_lock;
 
 struct task_struct;
+#ifdef CONFIG_SCHED_LOTTERY
+	#define SCHED_LOTTERY 11
+	#define INIT_TICKETS   3
+	#define MAX_TICKETS    5
+	#define MIN_TICKETS    1
+#endif
+struct task_struct
+{
+```
 
+	#ifdef CONFIG_SCHED_LOTTERY
+		unsigned int numberOfTickets;
+		unsigned long prevjiffies;
+};	#endif
 #ifdef CONFIG_PROVE_RCU
 extern int lockdep_tasklist_lock_is_held(void);
 #endif /* #ifdef CONFIG_PROVE_RCU */
@@ -1208,6 +1221,7 @@ struct task_struct {
 
 	unsigned int policy;
 	cpumask_t cpus_allowed;
+
 
 #ifdef CONFIG_TREE_PREEMPT_RCU
 	int rcu_read_lock_nesting;

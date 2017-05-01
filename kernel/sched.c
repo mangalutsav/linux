@@ -268,7 +268,19 @@ struct task_group {
 	struct list_head siblings;
 	struct list_head children;
 };
-
+#ifdef CONFIG_SCHED_LOTTERY
+struct lottery_rq
+{
+	struct list_hed lottery_list_head;
+	unsigned long nr_running;
+};
+#endif
+struct rq
+{
+	#ifdef CONFIG_SCHED_LOTTERY
+		struct lottery_rq irq;
+	#endif
+};
 #define root_task_group init_task_group
 
 /* task_group_lock serializes add/remove of task groups and also changes to
