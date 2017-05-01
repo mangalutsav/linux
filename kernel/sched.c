@@ -1931,6 +1931,7 @@ static void deactivate_task(struct rq *rq, struct task_struct *p, int sleep)
 
 #include "sched_idletask.c"
 #include "sched_fair.c"
+#include "sched_lot.c"
 #include "sched_rt.c"
 #ifdef CONFIG_SCHED_DEBUG
 # include "sched_debug.c"

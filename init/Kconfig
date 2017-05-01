@@ -23,6 +23,11 @@ config CONSTRUCTORS
 
 menu "General setup"
 
+config SCHED_LOT
+       bool "Lottery cpu scheduler"
+       ---help---
+         Brand new scheduler 
+
 config EXPERIMENTAL
 	bool "Prompt for development and/or incomplete code/drivers"
 	---help---
